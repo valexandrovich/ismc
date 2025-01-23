@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: data-v0001-001
+      author: valex
+      changes:
+        - sql:
+            sql: |
+                insert into scheduler.stored_job(id, source, name, alias, is_enabled,  created_by)
+                values (1, 'Державна судова адміністрація України', 'Відомості про справи про банкрутство',
+                'govua01', true, 'SYSTEM');
+    
+                insert into scheduler.stored_step(id, stored_job_id, step_order, worker, service, is_enabled, is_skippable)
+                values (1, 1, 1, 'govua01', 'downloader', true, false);

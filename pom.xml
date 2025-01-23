@@ -15,4 +15,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <modules>
+        <module>ismc-common</module>
+        <module>migrations</module>
+        <module>api-server</module>
+        <module>api-gateway</module>
+        <module>scheduler</module>
+    </modules>
 </project>
