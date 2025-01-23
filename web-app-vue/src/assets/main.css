@@ -1,0 +1,33 @@
+@import 'primeicons/primeicons.css';
+
+@import '@fontsource-variable/rubik';
+@import '@fontsource-variable/exo-2';
+@import '@fontsource-variable/montserrat';
+@import '@fontsource-variable/raleway';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+    @apply bg-gradient-radial-at-center from-slate-300 to-slate-100;
+    /*@apply dark:bg-gradient-radial-at-center dark:from-teal-900 dark:to-gray-900;*/
+    @apply dark:bg-gradient-radial-at-center dark:from-gray-700 dark:to-gray-900;
+
+
+    /*@apply bg-gradient-to-b from-gray-200 to-gray-300;*/
+    /*@apply dark:bg-gradient-to-br dark:from-gray-950 dark:to-teal-800 ;*/
+
+    /*@apply bg-gradient-to-b from-light-bg-from to-light-bg-to;*/
+    /*@apply dark:from-dark-bg-from dark:to-dark-bg-to ;*/
+
+    @apply text-light-text;
+    @apply dark:text-dark-text;
+}
+
+input[type="text"],
+input[type="password"] {
+    @apply bg-slate-200 dark:bg-opacity-15 px-4 py-1 rounded-lg outline-none  focus:outline-teal-500 focus:outline-offset-0;
+    @apply disabled:placeholder:text-slate-300 dark:disabled:placeholder:text-slate-500;
+}

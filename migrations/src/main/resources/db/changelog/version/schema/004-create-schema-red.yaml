@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: schema-v0001-004
+      author: valexa
+      changes:
+        - sql:
+            sql: |
+              CREATE SCHEMA red;
+              

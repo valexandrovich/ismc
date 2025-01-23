@@ -1,0 +1,50 @@
+databaseChangeLog:
+  - changeSet:
+      id: schema-v0001-012
+      author: valex
+      changes:
+        - sql:
+            sql: |
+                    create table red.upload_le
+                    (
+                    hash                    uuid not null primary key,
+                    create_revision_id      bigint,
+                    update_revision_id      bigint,
+                    disable_revision_id     bigint,
+                    create_date             timestamp(6),
+                    update_date             timestamp(6),
+                    disable_date            timestamp(6),
+                    short_name            varchar(255),
+                    full_name           varchar(255),
+                    opf      varchar(255),
+                    foundation_date                date,
+                    edrpou                     varchar(255),
+                    citizenship             varchar(255),
+                    phone                   varchar(255),
+                    email                   varchar(255),
+                    address_simple          text,
+                    address_zip             varchar(255),
+                    address_country         varchar(255),
+                    address_region          varchar(255),
+                    address_county          varchar(255),
+                    address_city_type       varchar(255),
+                    address_city_name       varchar(255),
+                    address_street_type     varchar(255),
+                    address_street_name     varchar(255),
+                    address_building_no     varchar(255),
+                    address_building_part   varchar(255),
+                    address_building_letter varchar(255),
+                    address_apartment       varchar(255),
+                    comment                 varchar(255),
+                    mark_id                 varchar(255),
+                    mark_event_date         date,
+                    mark_start_date         date,
+                    mark_end_date           date,
+                    mark_text_value         varchar(255),
+                    mark_number_value       varchar(255),
+                    mark_comment            varchar(255),
+                    source                  varchar(255),
+                    id                      uuid
+                    );
+                
+

@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: schema-v001
+      author: valex
+      changes:
+        - sql:
+            sql: |
+              insert into sys.ldap_group_role_mapping(ldap_group_dn, role)
+              values 
+              ('CN=AFS_ADMIN,OU=GROUPS,DC=EXAMPLE,DC=COM', 'ROLE_ADMIN'),
+              ('CN=AFS_SEARCH_BASE,OU=GROUPS,DC=EXAMPLE,DC=COM', 'ROLE_SEARCH_BASE'),
+              ('CN=AFS_SEARCH_ADVANCED,OU=GROUPS,DC=EXAMPLE,DC=COM', 'ROLE_SEARCH_ADVANCED'),    
+              ('CN=AFS_API_SEARCH_BASE,OU=GROUPS,DC=EXAMPLE,DC=COM', 'ROLE_API_SEARCH_BASE')
+              
+              ;

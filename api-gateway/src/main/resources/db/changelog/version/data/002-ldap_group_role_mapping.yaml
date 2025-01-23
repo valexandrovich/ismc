@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: schema-v003
+      author: valex
+      changes:
+        - sql:
+            sql: |
+              insert into sys.ldap_group_role_mapping(ldap_group_dn, role)
+              values ('CN=ANTIFRAUD_ADMIN,OU=ANTIFRAUD,OU=SOLUTION GROUPS,OU=GROUPS,DC=RAIFFEISENBANK,DC=COM,DC=UA', 'ROLE_ADMIN'),
+              ('CN=ANTIFRAUD_SEARCH_ADVANCED,OU=ANTIFRAUD,OU=SOLUTION GROUPS,OU=GROUPS,DC=RAIFFEISENBANK,DC=COM,DC=UA', 'ROLE_SEARCH_ADVANCED');

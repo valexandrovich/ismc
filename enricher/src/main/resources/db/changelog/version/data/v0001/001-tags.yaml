@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: schema-v0001-001
+      author: valex
+      changes:
+        - sql:
+            sql: |
+                insert into data.tag_type (level_1_code, level_2_code, level_3_code, level_4_code, level_5_code, code,
+                level_1_description, level_2_description, level_3_description, level_4_description,
+                level_5_description, description)
+                values ('N', 'B', 'B', '1', '', 'NBB1', 'Негатив', 'Чорний список', 'Банкрутство', 'Порушено справу про банкрутство',
+                '', 'Негатив \ Чорний список \ Банкрутство \ Порушено справу про банкрутство');
+                
+                
+                insert into data.tag_type (level_1_code, level_2_code, level_3_code, level_4_code, level_5_code, code,
+                level_1_description, level_2_description, level_3_description, level_4_description,
+                level_5_description, description)
+                values ('N', 'B', 'B', '2', '', 'NBB2', 'Негатив', 'Чорний список', 'Банкрутство', 'Визнано банкрутом',
+                '', 'Негатив \ Чорний список \ Банкрутство \ Визнано банкрутом');
+                
+                insert into data.tag_type (level_1_code, level_2_code, level_3_code, level_4_code, level_5_code, code,
+                level_1_description, level_2_description, level_3_description, level_4_description,
+                level_5_description, description)
+                values ('N', 'B', 'F', '', '', 'NBF', 'Негатив', 'Чорний список', 'Підозра в шахрайстві', '',
+                '', 'Негатив \ Чорний список \ Банкрутство \ Підозра в шахрайстві');
+                              

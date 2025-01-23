@@ -1,0 +1,4 @@
+databaseChangeLog:
+  -  includeAll:
+       path:  version/schema
+       relativeToChangelogFile: true

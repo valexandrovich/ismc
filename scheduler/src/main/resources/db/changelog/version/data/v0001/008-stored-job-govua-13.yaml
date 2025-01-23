@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: data-v0001-008
+      author: valex
+      changes:
+        - sql:
+            sql: |
+              insert into scheduler.stored_job(id, source, name, short_name, is_enabled)
+              values (13, 'Міністерство внутрішніх справ України', 'Інформація про паспорти громадянина України для виїзду за кордон по яких зареєстровано заяви щодо викрадання чи втрати. А також інформація про паспорти громадянина України для виїзду за кордон, визнані недійсними.',
+              'govua13', true);
+              
+              insert into scheduler.stored_step(id, stored_job_id, step_order, worker, service, is_enabled, is_skippable)
+              values (15, 13, 1, 'govua13', 'downloader', true, false);
+              
+              
+              insert into scheduler.stored_step_parameter (stored_step_id, key, value)
+              values (15, 'retries', '10'),
+              (15, 'packageId', 'b465b821-db5d-4b8b-8131-12682fab2203'),
+              (15, 'timeoutSec', '30');
+              
+              insert into scheduler.stored_step(id, stored_job_id, step_order, worker, service, is_enabled, is_skippable)
+              values (16, 13, 2, 'govua13', 'importer', true, false);
