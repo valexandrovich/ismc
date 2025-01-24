@@ -1,15 +1,18 @@
 package ua.com.valexa.scheduler.service;
 
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
-import reactor.core.scheduler.Schedulers;
-import ua.com.valexa.common.dto.scheduler.StoredJobDto;
-import ua.com.valexa.scheduler.mapper.StoredJobMapper;
+import reactor.core.publisher.Mono;
 import ua.com.valexa.scheduler.model.StoredJob;
+import ua.com.valexa.scheduler.model.StoredStep;
 import ua.com.valexa.scheduler.repository.StoredJobRepository;
+import ua.com.valexa.scheduler.repository.StoredStepParameterRepository;
 import ua.com.valexa.scheduler.repository.StoredStepRepository;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
 
 @Service
 public class StoredJobService {
@@ -19,24 +22,38 @@ public class StoredJobService {
 
     @Autowired
     private StoredStepRepository storedStepRepository;
-
     @Autowired
-    StoredJobMapper storedJobMapper;
+    private StoredStepParameterRepository storedStepParameterRepository;
 
-    public Flux<StoredJobDto> findAllFilled() {
-        return fillSteps(findAll()).map(storedJobMapper::toDto);
+    public Flux<StoredJob> fetchAll() {
+        return storedJobRepository.findAll()
+                .flatMap(this::fillStoredSteps);
     }
 
-    public Flux<StoredJob> findAll() {
-        return storedJobRepository.findAll();
-
+    public Mono<StoredJob> fillStoredSteps(StoredJob storedJob) {
+        return storedStepRepository
+                .findByStoredJobId(storedJob.getId())
+                .flatMap(this::fillStoredStepParameters)
+                .collectList()
+                .map(storedSteps -> {
+                    storedSteps.sort(Comparator.comparingInt(StoredStep::getStepOrder));
+                    storedJob.setSteps(new ArrayList<>(storedSteps));
+                    return storedJob;
+                });
     }
+    
+    
 
-    public Flux<StoredJob> fillSteps(Flux<StoredJob> storedJobFlux) {
-        return storedJobFlux.publishOn(Schedulers.boundedElastic()).map(storedJob -> {
-            storedJob.setSteps(storedStepRepository.findByStoredJobId(storedJob.getId()).collectList().block());
-            return storedJob;
-        });
+    public Mono<StoredStep> fillStoredStepParameters(StoredStep storedStep) {
+        return storedStepParameterRepository
+                .findByStoredStepId(storedStep.getId())
+                .collectList()
+                .map(
+                        storedStepParameters -> {
+                            storedStep.setParameters(new HashSet<>(storedStepParameters));
+                            return storedStep;
+                        }
+                );
     }
 
 }

@@ -6,8 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
 
 @Table(schema ="scheduler", name = "stored_step")
 @Getter
@@ -23,7 +22,8 @@ public class StoredStep {
     private Boolean isEnabled = true;
     private Boolean isSkippable = false;
 
-//    @Transient
-//    private Map<String, String> parameters = new HashMap<>();
+    @Transient
+    private HashSet<StoredStepParameter> parameters = new HashSet<>();
+    
 
 }

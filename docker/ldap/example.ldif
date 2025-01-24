@@ -1,0 +1,93 @@
+
+dn: ou=users,dc=example,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: users
+
+
+dn: uid=admin_user,ou=users,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: User Admin
+sn: Admin
+uid: admin_user
+userPassword: 1111
+
+dn: uid=search_base_user,ou=users,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: User Base
+sn: Base
+uid: search_base_user
+userPassword: 1111
+
+dn: uid=search_advanced_user,ou=users,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: User Advanced
+sn: Advanced
+uid: search_advanced_user
+userPassword: 1111
+
+
+dn: uid=api_search_base,ou=users,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: API Base Search
+sn: API Base Search
+uid: api_search_base
+userPassword: 1111
+
+dn: uid=stranger_user,ou=users,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Stranger
+sn: Stranger
+uid: stranger_user
+userPassword: 1111
+
+
+
+dn: ou=groups,dc=example,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: groups
+
+
+dn: cn=afs_admin,ou=groups,dc=example,dc=com
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: afs_admin
+uniqueMember: uid=admin_user,ou=users,dc=example,dc=com
+
+dn: cn=afs_search_base,ou=groups,dc=example,dc=com
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: afs_search_base
+uniqueMember: uid=search_base_user,ou=users,dc=example,dc=com
+uniqueMember: uid=admin_user,ou=users,dc=example,dc=com
+
+dn: cn=afs_search_advanced,ou=groups,dc=example,dc=com
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: afs_search_advanced
+uniqueMember: uid=search_advanced_user,ou=users,dc=example,dc=com
+uniqueMember: uid=admin_user,ou=users,dc=example,dc=com
+
+dn: cn=afs_api_search_base,ou=groups,dc=example,dc=com
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: afs_api_search_base
+uniqueMember: uid=api_search_base,ou=users,dc=example,dc=com
+uniqueMember: uid=admin_user,ou=users,dc=example,dc=com
+
